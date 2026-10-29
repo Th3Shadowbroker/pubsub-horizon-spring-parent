@@ -10,6 +10,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import de.telekom.eni.pandora.horizon.mongo.config.MongoProperties;
 import de.telekom.eni.pandora.horizon.mongo.repository.MessageStateMongoRepo;
+import de.telekom.eni.pandora.horizon.mongo.repository.SnapshotMongoRepo;
 import de.telekom.eni.pandora.horizon.mongo.repository.SubscriptionsMongoRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -72,5 +73,11 @@ public class MongoAutoConfiguration {
     public SubscriptionsMongoRepo getSubscriptionsRepo(@Qualifier("mongoConfigTemplate") MongoTemplate mongoConfigTemplate) {
         MongoRepositoryFactory mongoRepositoryFactory = new MongoRepositoryFactory(mongoConfigTemplate);
         return mongoRepositoryFactory.getRepository(SubscriptionsMongoRepo.class);
+    }
+
+    @Bean
+    public SnapshotMongoRepo getSnapshotRepo(@Qualifier("mongoConfigTemplate") MongoTemplate mongoConfigTemplate) {
+        MongoRepositoryFactory mongoRepositoryFactory = new MongoRepositoryFactory(mongoConfigTemplate);
+        return mongoRepositoryFactory.getRepository(SnapshotMongoRepo.class);
     }
 }

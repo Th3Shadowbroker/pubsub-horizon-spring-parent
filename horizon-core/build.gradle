@@ -76,6 +76,7 @@ dependencies {
 
     // Curator
     api "org.apache.curator:curator-framework:${curatorVersion}"
+    api "org.apache.curator:curator-recipes:${curatorVersion}"
     testImplementation "org.apache.curator:curator-test:${curatorVersion}"
 
     // Observability

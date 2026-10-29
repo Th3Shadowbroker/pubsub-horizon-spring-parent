@@ -7,6 +7,7 @@ package de.telekom.eni.pandora.horizon.autoconfigure.zookeeper;
 import de.telekom.eni.pandora.horizon.zookeeper.ZooKeeperProperties;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.recipes.cache.CuratorCache;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -32,6 +33,9 @@ public class CuratorClientConfiguration {
         client.start();
         return client;
     }
+
+    @Bean
+    public CuratorCache
 
 
 }
