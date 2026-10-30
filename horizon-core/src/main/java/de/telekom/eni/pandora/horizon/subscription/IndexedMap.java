@@ -7,6 +7,8 @@ package de.telekom.eni.pandora.horizon.subscription;
 import de.telekom.eni.pandora.horizon.kubernetes.resource.SubscriptionResource;
 import de.telekom.eni.pandora.horizon.mongo.model.SnapshotMongoDocument;
 import lombok.Getter;
+import org.bson.types.ObjectId;
+import org.jspecify.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,10 +23,15 @@ public class IndexedMap {
     @Getter
     private final long version;
 
-    public IndexedMap(List<SnapshotMongoDocument> documents, long version) {
+    @Getter
+    @Nullable
+    private final ObjectId snapshotId;
+
+    public IndexedMap(List<SnapshotMongoDocument> documents, long version, @Nullable ObjectId snapshotId) {
         this.subscriptionsById = new HashMap<>(documents.size());
         this.subscriptionsByEnvironmentAndEventType = new HashMap<>(documents.size());
         this.version = version;
+        this.snapshotId = snapshotId;
 
         documents.forEach(document -> {
            subscriptionsById.put(document.getSnapshotId(), document.getResource());
@@ -51,7 +58,7 @@ public class IndexedMap {
     }
 
     public static IndexedMap empty() {
-        return new IndexedMap(List.of(), -1L);
+        return new IndexedMap(List.of(), -1L, null);
     }
 
 }

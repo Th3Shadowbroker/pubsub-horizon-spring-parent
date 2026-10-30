@@ -13,6 +13,6 @@ import java.util.List;
 
 public interface SnapshotMongoRepo extends MongoRepository<SnapshotMongoDocument, ObjectId> {
 
-    public List<SnapshotMongoDocument> findBySnapshotId(ObjectId snapshotId);
+    public List<SnapshotMongoDocument> findBySnapshotId(String snapshotId);
 
 }

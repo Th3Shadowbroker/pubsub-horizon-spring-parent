@@ -37,7 +37,7 @@ public class ReplicaMaps {
         active.set(indexedMap);
     }
 
-    public void swap() {
+    public void activate() {
         activate(prepared.get());
     }
 
