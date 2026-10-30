@@ -31,12 +31,16 @@ public class ReplicaMaps {
         prepared.set(indexedMap);
     }
 
-    public void activate() {
+    public void activate(IndexedMap indexedMap) {
         if (active.get().getVersion() >= prepared.get().getVersion()) {
             return;
         }
 
-        active.set(prepared.get());
+        active.set(indexedMap);
+    }
+
+    public void swap() {
+        activate(prepared.get());
     }
 
     public boolean isFullyInitialized() {
