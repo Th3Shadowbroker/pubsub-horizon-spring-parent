@@ -34,8 +34,4 @@ public class CuratorClientConfiguration {
         return client;
     }
 
-    @Bean
-    public CuratorCache
-
-
 }
